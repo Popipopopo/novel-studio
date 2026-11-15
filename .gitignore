@@ -1,0 +1,14 @@
+node_modules
+dist
+dist-ssr
+.DS_Store
+*.local
+.env
+.env.*
+!.env.example
+.vite
+
+# Novel manuscripts live in IndexedDB on the user's device.
+# This repo intentionally ships NO manuscript data by default.
+/manuscripts/
+/exports/

@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light dark;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  @apply bg-paper-50 text-ink-600 font-sans antialiased;
+  font-feature-settings: 'palt';
+}
+
+.dark body {
+  @apply bg-ink-800 text-ink-50;
+}
+
+/* Manuscript typography */
+.manuscript {
+  @apply font-serif text-[17px] leading-[2.05] text-ink-600;
+}
+.dark .manuscript { @apply text-ink-50; }
+
+.manuscript p {
+  margin: 0 0 1.1em 0;
+  text-indent: 2em;
+}
+.manuscript h1 { @apply text-2xl font-semibold mb-6 mt-2; text-indent: 0; }
+.manuscript h2 { @apply text-xl font-semibold mb-4 mt-6; text-indent: 0; }
+.manuscript h3 { @apply text-lg font-semibold mb-3 mt-5; text-indent: 0; }
+.manuscript blockquote {
+  @apply border-l-4 border-paper-300 pl-4 italic text-ink-400;
+  text-indent: 0;
+}
+.manuscript hr { @apply my-8 border-paper-200; }
+
+/* ProseMirror focus */
+.ProseMirror { outline: none; min-height: 60vh; }
+.ProseMirror:focus { outline: none; }
+.ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  @apply text-ink-200 float-left pointer-events-none h-0;
+}
+
+/* Comment mark */
+.comment-mark {
+  background: rgba(234, 179, 8, 0.14);
+  border-bottom: 1.5px solid rgba(202, 138, 4, 0.55);
+  cursor: pointer;
+  border-radius: 1px;
+  padding: 0 1px;
+  transition: background 120ms;
+}
+.comment-mark[data-active="true"] {
+  background: rgba(234, 179, 8, 0.35);
+}
+.comment-mark[data-resolved="true"] {
+  background: transparent;
+  border-bottom: 1.5px dotted rgba(138, 130, 117, 0.6);
+}
+
+/* Revision marks */
+.rev-insert {
+  @apply text-accent-500;
+  background: rgba(45, 127, 120, 0.08);
+  border-radius: 1px;
+  padding: 0 1px;
+}
+.rev-delete {
+  color: rgb(185, 28, 28);
+  text-decoration: line-through;
+  text-decoration-color: rgba(185, 28, 28, 0.6);
+  background: rgba(239, 68, 68, 0.06);
+  border-radius: 1px;
+  padding: 0 1px;
+}
+.dark .rev-insert { color: rgb(110, 188, 180); }
+.dark .rev-delete { color: rgb(248, 113, 113); }
+
+/* Scrollbar */
+.thin-scroll::-webkit-scrollbar { width: 8px; height: 8px; }
+.thin-scroll::-webkit-scrollbar-thumb { @apply bg-paper-200 rounded; }
+.dark .thin-scroll::-webkit-scrollbar-thumb { @apply bg-ink-500; }
+
+/* Floating toolbar */
+.bubble-menu {
+  @apply flex items-center gap-1 px-2 py-1 rounded-md border border-paper-200 shadow-lg bg-white;
+}
+.dark .bubble-menu { @apply bg-ink-700 border-ink-500; }
+
+button.ghost {
+  @apply px-2 py-1 rounded hover:bg-paper-100 text-ink-500 transition;
+}
+.dark button.ghost:hover { @apply bg-ink-600 text-ink-50; }
